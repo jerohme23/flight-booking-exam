@@ -1,0 +1,30 @@
+{
+  "name": "flight-web-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:booking-lifecycle": "playwright test tests/api/tests/01-create-booking.spec.ts --project=chromium --workers=1 && playwright test tests/api/tests/02-get-booking.spec.ts --project=chromium --workers=1 && playwright test tests/api/tests/03-delete-booking.spec.ts --project=chromium --workers=1",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report test-results/html-report",
+    "env.local": "npx playwright test --project=chromium --ui --update-snapshots "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.5"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "description": ""
+}

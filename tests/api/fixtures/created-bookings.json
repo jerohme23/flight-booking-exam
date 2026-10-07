@@ -1,0 +1,257 @@
+[
+  {
+    "bookingid": 5402,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 1038,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 2941,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 3179,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 3188,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 3190,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 4494,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 4503,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 4504,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 1261,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 1267,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 1285,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 1905,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 1914,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 1915,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 4213,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  },
+  {
+    "bookingid": 4393,
+    "booking": {
+      "firstname": "John",
+      "lastname": "Doe",
+      "totalprice": 1500,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2026-10-01",
+        "checkout": "2026-10-05"
+      },
+      "additionalneeds": "Breakfast"
+    },
+    "selectedForDeletion": false
+  }
+]
