@@ -29,8 +29,8 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL:
-      process.env.API_BASE_URL ||
       process.env.BASE_URL ||
+      process.env.API_BASE_URL ||
       "https://www.cheapflights.com.au/",
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
