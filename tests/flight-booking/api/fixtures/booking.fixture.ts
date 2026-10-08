@@ -1,41 +1,13 @@
 import { APIRequestContext, test as base } from "@playwright/test";
-import { validBooking } from "../../testdata/fixtures/booking.data";
+import { isCreateBookingResponse } from "../../../testdata/helpers";
 import { BOOKING_ROUTES } from "../routes/booking.routes";
-import { CreateBookingResponse } from "../types/create-booking.type";
+import type { CreateBookingResponse } from "../types/create-booking.type";
 import { logApiExchange } from "./api-logging";
 import { storeCreatedBooking } from "./booking-storage";
+import { validBooking } from "../../../testdata/fixtures";
 
 interface BookingFixtures {
   createdBooking: CreateBookingResponse;
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
-function isCreateBookingResponse(
-  value: unknown,
-): value is CreateBookingResponse {
-  if (!isRecord(value) || !isRecord(value.booking)) {
-    return false;
-  }
-
-  const booking = value.booking;
-  const dates = booking.bookingdates;
-
-  return (
-    typeof value.bookingid === "number" &&
-    Number.isInteger(value.bookingid) &&
-    value.bookingid > 0 &&
-    typeof booking.firstname === "string" &&
-    typeof booking.lastname === "string" &&
-    typeof booking.totalprice === "number" &&
-    typeof booking.depositpaid === "boolean" &&
-    isRecord(dates) &&
-    typeof dates.checkin === "string" &&
-    typeof dates.checkout === "string" &&
-    typeof booking.additionalneeds === "string"
-  );
 }
 
 async function createBooking(

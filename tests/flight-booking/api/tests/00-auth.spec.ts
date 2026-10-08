@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { AuthService } from "../services/auth.service";
-import { AuthData } from "../../testdata/fixtures/auth.data";
+import { AuthData } from "../../../testdata/fixtures";
 
 test.describe("Auth API", () => {
   test("AUTH-001 should create authentication token with valid credentials", async ({
@@ -21,7 +21,7 @@ test.describe("Auth API", () => {
   }) => {
     const authService = new AuthService(request);
 
-    await expect( authService.createToken(AuthData.invalidUsername),).rejects.toThrow
+    await expect( authService.createToken(AuthData.invalidUsername),"able to return error when username is invalid").rejects.toThrow
     (/Bad credentials|expected a non-empty string token/);
   });
 
@@ -31,7 +31,7 @@ test.describe("Auth API", () => {
     const authService = new AuthService(request);
 
     await expect(
-      authService.createToken(AuthData.invalidPassword),
+      authService.createToken(AuthData.invalidPassword),"able to return error when password is invalid"
     ).rejects.toThrow(/Bad credentials|expected a non-empty string token/);
   });
 
@@ -41,7 +41,7 @@ test.describe("Auth API", () => {
     const authService = new AuthService(request);
 
     await expect(
-      authService.createToken(AuthData.emptyUsername),
+      authService.createToken(AuthData.emptyUsername),"able to return error when username is empty"
     ).rejects.toThrow(/Bad credentials|expected a non-empty string token/);
   });
 
@@ -51,7 +51,7 @@ test.describe("Auth API", () => {
     const authService = new AuthService(request);
 
     await expect(
-      authService.createToken(AuthData.emptyPassword),
+      authService.createToken(AuthData.emptyPassword),"able to return error when password is empty"
     ).rejects.toThrow(/Bad credentials|expected a non-empty string token/);
   });
 });

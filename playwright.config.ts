@@ -27,11 +27,9 @@ export default defineConfig({
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Base URL to use in actions like `await page.goto('')`. */
+    /* Base URL for API requests; UI tests navigate with BASE_URL directly. */
     baseURL:
-      process.env.API_BASE_URL ||
-      process.env.BASE_URL ||
-      "https://www.cheapflights.com.au/",
+      process.env.BASE_URL || process.env.API_BASE_URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
