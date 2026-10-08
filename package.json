@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
-    "test:booking-lifecycle": "playwright test tests/api/tests/01-create-booking.spec.ts --project=chromium --workers=1 && playwright test tests/api/tests/02-get-booking.spec.ts --project=chromium --workers=1 && playwright test tests/api/tests/03-delete-booking.spec.ts --project=chromium --workers=1",
+    "test:booking-lifecycle": "playwright test tests/flight-booking/api/tests/01-create-booking.spec.ts --project=chromium --workers=1 && playwright test tests/flight-booking/api/tests/02-get-booking.spec.ts --project=chromium --workers=1 && playwright test tests/flight-booking/api/tests/03-delete-booking.spec.ts --project=chromium --workers=1",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug",
