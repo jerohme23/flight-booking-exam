@@ -9,6 +9,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     env:
+      BASE_URL: https://www.cheapflights.com.au
       API_BASE_URL: https://restful-booker.herokuapp.com
       AUTH_USERNAME: ${{ secrets.AUTH_USERNAME }}
       API_AUTH_PASSWORD: ${{ secrets.API_AUTH_PASSWORD }}

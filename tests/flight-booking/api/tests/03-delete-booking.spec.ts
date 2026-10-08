@@ -1,9 +1,9 @@
 import { expect, test } from "@playwright/test";
-import { AuthData } from "../../testdata/fixtures/auth.data";
+import { AuthData } from "../../../testdata/fixtures";
 import { logApiExchange } from "../fixtures/api-logging";
 import {
-  getBookingMarkedForDeletion,
   removeDeletedBooking,
+  waitForBookingMarkedForDeletion,
 } from "../fixtures/booking-storage";
 import { AUTH_ROUTE, BOOKING_ROUTES } from "../routes/booking.routes";
 
@@ -22,7 +22,7 @@ test.describe("Delete selected booking", () => {
   test("BOOKING-DELETE-001 should delete the booking selected by get-booking.spec.ts", async ({
     request,
   }, testInfo) => {
-    const bookingToDelete = await getBookingMarkedForDeletion();
+    const bookingToDelete = await waitForBookingMarkedForDeletion();
     const authResponse = await request.post(AUTH_ROUTE, {
       data: AuthData.validUser,
       headers: {
@@ -36,9 +36,15 @@ test.describe("Delete selected booking", () => {
       status: authResponse.status(),
       responseBody: "(authentication response omitted)",
     });
-    expect(authResponse.status(), "Auth API response should have a 200 status").toBe(200);
+    expect(
+      authResponse.status(),
+      "Auth API response should have a 200 status",
+    ).toBe(200);
     const authBody: unknown = await authResponse.json();
-    expect(isTokenResponse(authBody), "Auth API response should contain a valid token").toBe(true);
+    expect(
+      isTokenResponse(authBody),
+      "Auth API response should contain a valid token",
+    ).toBe(true);
 
     if (!isTokenResponse(authBody)) {
       throw new Error("Auth API response did not contain a valid token");
@@ -83,6 +89,8 @@ test.describe("Delete selected booking", () => {
       body: storageUpdate,
       contentType: "text/plain",
     });
-    expect(removedCount, "Deleted booking should be removed from storage").toBe(1);
+    expect(removedCount, "Deleted booking should be removed from storage").toBe(
+      1,
+    );
   });
 });

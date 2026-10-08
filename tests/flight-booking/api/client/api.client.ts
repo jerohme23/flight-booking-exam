@@ -22,6 +22,8 @@ export class ApiClient {
       },
     });
 
+    console.log(`[API] POST ${response.url()}`);
+
     const rawText = await response.text();
 
     if (!rawText) {

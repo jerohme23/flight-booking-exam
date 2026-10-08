@@ -6,7 +6,6 @@ test.describe('Flight Booking Tests', () => {
 
     test.beforeEach(async ({ page }) => {
         flightPage = new FlightPage(page);
-        //await page.setViewportSize({ width: 1366, height: 768 });
         await page.goto(process.env.BASE_URL!);
         await expect(flightPage.logo).toBeVisible();
     });
