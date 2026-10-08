@@ -1,40 +1,17 @@
 import { randomUUID } from "node:crypto";
 import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { isStoredBooking } from "../../../testdata/helpers";
 import type { CreateBookingResponse } from "../types/create-booking.type";
 
 const storagePath = path.join(__dirname, "created-bookings.json");
 const lockPath = `${storagePath}.lock`;
 const lockTimeoutMs = 30_000;
+const deletionSelectionTimeoutMs = 10_000;
+const deletionSelectionPollIntervalMs = 100;
 
 interface StoredBooking extends CreateBookingResponse {
   selectedForDeletion?: boolean;
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
-function isStoredBooking(value: unknown): value is StoredBooking {
-  if (!isRecord(value) || !isRecord(value.booking)) {
-    return false;
-  }
-
-  const booking = value.booking;
-  const dates = booking.bookingdates;
-
-  return (
-    typeof value.bookingid === "number" &&
-    Number.isInteger(value.bookingid) &&
-    typeof booking.firstname === "string" &&
-    typeof booking.lastname === "string" &&
-    typeof booking.totalprice === "number" &&
-    typeof booking.depositpaid === "boolean" &&
-    isRecord(dates) &&
-    typeof dates.checkin === "string" &&
-    typeof dates.checkout === "string" &&
-    typeof booking.additionalneeds === "string"
-  );
 }
 
 async function acquireStorageLock(): Promise<void> {
@@ -105,7 +82,10 @@ export async function storeCreatedBooking(
   await acquireStorageLock();
 
   try {
-    const bookings = await readStoredBookings();
+    const bookings = (await readStoredBookings()).map((storedBooking) => ({
+      ...storedBooking,
+      selectedForDeletion: false,
+    }));
     bookings.push({ ...booking, selectedForDeletion: false });
     await writeStoredBookings(bookings);
   } finally {
@@ -164,22 +144,33 @@ export async function markBookingForDeletion(
   }
 }
 
-export async function getBookingMarkedForDeletion(): Promise<CreateBookingResponse> {
-  await acquireStorageLock();
+export async function waitForBookingMarkedForDeletion(): Promise<CreateBookingResponse> {
+  const deadline = Date.now() + deletionSelectionTimeoutMs;
 
-  try {
-    const bookings = await readStoredBookings();
-    const booking = bookings.find((entry) => entry.selectedForDeletion);
+  while (true) {
+    await acquireStorageLock();
 
-    if (!booking) {
+    let booking: StoredBooking | undefined;
+    try {
+      const bookings = await readStoredBookings();
+      booking = bookings.find((entry) => entry.selectedForDeletion);
+    } finally {
+      await rm(lockPath, { recursive: true });
+    }
+
+    if (booking) {
+      return { bookingid: booking.bookingid, booking: booking.booking };
+    }
+
+    if (Date.now() >= deadline) {
       throw new Error(
-        `No booking is marked for deletion in storage: ${storagePath}. Run get-booking.spec.ts first.`,
+        `Timed out after ${deletionSelectionTimeoutMs}ms waiting for a booking to be marked for deletion in storage: ${storagePath}. Ensure get-booking.spec.ts completes successfully before running delete-booking.spec.ts.`,
       );
     }
 
-    return { bookingid: booking.bookingid, booking: booking.booking };
-  } finally {
-    await rm(lockPath, { recursive: true });
+    await new Promise((resolve) =>
+      setTimeout(resolve, deletionSelectionPollIntervalMs),
+    );
   }
 }
 

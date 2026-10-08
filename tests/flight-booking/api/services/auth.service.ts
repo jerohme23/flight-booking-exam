@@ -27,11 +27,7 @@ export class AuthService {
       );
     }
 
-    if (
-      typeof body !== "object" ||
-      body === null ||
-      Array.isArray(body)
-    ) {
+    if (typeof body !== "object" || body === null || Array.isArray(body)) {
       const detail =
         typeof body === "string" ? body : JSON.stringify(body ?? {});
       throw new Error(
