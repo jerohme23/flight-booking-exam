@@ -7,7 +7,7 @@ import type { CreateBookingResponse } from "../types/create-booking.type";
 const storagePath = path.join(__dirname, "created-bookings.json");
 const lockPath = `${storagePath}.lock`;
 const lockTimeoutMs = 30_000;
-const deletionSelectionTimeoutMs = 10_000;
+const deletionSelectionTimeoutMs = 2_000;
 const deletionSelectionPollIntervalMs = 100;
 
 interface StoredBooking extends CreateBookingResponse {

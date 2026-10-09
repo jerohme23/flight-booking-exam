@@ -1,0 +1,41 @@
+{
+  "return": {
+    "destination": "Boracay",
+    "departureOffset": 1,
+    "returnOffset": 0,
+    "departDate": "10/11/2026",
+    "returnDate": "10/15/2026",
+    "adultsCount": 2,
+    "childrenCount": 2,
+    "childrenAges": [5, 2],
+    "infantCount": 1,
+    "cabinClass": "First"
+  },
+  "oneWay": {
+    "destination": "Boracay",
+    "departureOffset": 1,
+    "departDate": "10/11/2026",
+    "adultsCount": 2,
+    "childrenCount": 2,
+    "childrenAges": [5, 2],
+    "infantCount": 1,
+    "cabinClass": "First"
+  },
+  "multiCity": {
+    "itinerary": [
+      {
+        "destination": "Boracay",
+        "departDate": "10/11/2026"
+      },
+      {
+        "destination": "Cebu",
+        "departDate": "10/15/2026"
+      }
+    ],
+    "adultsCount": 2,
+    "childrenCount": 2,
+    "childrenAges": [5, 2],
+    "infantCount": 1,
+    "cabinClass": "First"
+  }
+}
