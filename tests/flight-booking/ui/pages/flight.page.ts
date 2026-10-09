@@ -4,11 +4,21 @@ export class FlightPage {
   readonly page: Page;
   readonly logo: Locator;
   readonly askAiButton: Locator;
+  readonly signInModal: Locator;
+  
   readonly loginButton: Locator;
   readonly flightNavigation: Locator;
   readonly staysNavigation: Locator;
   readonly carNavigation: Locator;
-  readonly signInModal: Locator;
+ 
+  readonly returnTripSelection: Locator;
+  // readonly flightTripSelection: Locator;
+
+  // readonly flightDate: Locator;
+  // readonly flightTripTypeSelection: Locator;
+  // readonly flightSearchButton: Locator;
+
+
 
   constructor(page: Page) {
     this.page = page;
@@ -17,10 +27,16 @@ export class FlightPage {
       .getByRole("presentation");
     this.loginButton = page.getByRole("button", { name: "Sign in" });
     this.askAiButton = page.getByRole("button", { name: "Ask AI" });
+    this.signInModal = page.locator('div[class="c-ulo-viewport"]');
+
     this.flightNavigation = page.getByRole("menuitem", { name: "Flights" });
     this.staysNavigation = page.getByRole("menuitem", { name: "Stays" });
     this.carNavigation = page.getByRole("menuitem", { name: "Cars" });
-    this.signInModal = page.locator('div[class="c-ulo-viewport"]');
+
+    this.returnTripSelection = page.getByRole("combobox", {
+      name: /^Trip type /,
+    });
+
   }
 
   getInitialPosition = async () => {
@@ -38,4 +54,11 @@ export class FlightPage {
 
     return { logoPosition, loginButtonPosition, askAiButtonPosition };
   };
+
+  getReturnTripSelection = async () => {
+    const returnTripSelection = this.page.getByRole("radio", {
+      name: "Return trip",
+    });
+    return returnTripSelection;
+  }
 }

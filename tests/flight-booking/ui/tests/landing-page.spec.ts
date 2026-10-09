@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { FlightPage } from '../pages/flight.page';
 
-test.describe('Flight Booking Tests', () => {
+test.describe('Flight Landing Page and Navigation Tests', () => {
     let flightPage: FlightPage;
 
     test.beforeEach(async ({ page }) => {
