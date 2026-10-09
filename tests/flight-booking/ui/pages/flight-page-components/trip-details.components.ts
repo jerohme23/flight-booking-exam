@@ -47,9 +47,12 @@ export class TripDetialsComponent {
 
     for (const [index, age] of ages.entries()) {
       const ageCombobox = childAgeContainers.nth(index).getByRole("combobox");
-      console.log(ageCombobox);
-      await ageCombobox.click({timeout: 5000});
-      await this.page.getByRole("option", { name: String(age), exact: true }).click({ timeout: 5000 });
+      await ageCombobox.click({ timeout: 5000 });
+      await this.page
+        .getByRole("listbox")
+        .last()
+        .getByRole("option", { name: String(age), exact: true })
+        .click({ timeout: 5000 });
     }
   }
 
