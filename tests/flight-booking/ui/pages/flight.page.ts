@@ -12,12 +12,6 @@ export class FlightPage {
   readonly carNavigation: Locator;
  
   readonly returnTripSelection: Locator;
-  // readonly flightTripSelection: Locator;
-
-  // readonly flightDate: Locator;
-  // readonly flightTripTypeSelection: Locator;
-  // readonly flightSearchButton: Locator;
-
 
 
   constructor(page: Page) {
@@ -27,7 +21,7 @@ export class FlightPage {
       .getByRole("presentation");
     this.loginButton = page.getByRole("button", { name: "Sign in" });
     this.askAiButton = page.getByRole("button", { name: "Ask AI" });
-    this.signInModal = page.locator('div[class="c-ulo-viewport"]');
+    this.signInModal = page.locator('div[class="c-ulo-viewport"]').nth(1);
 
     this.flightNavigation = page.getByRole("menuitem", { name: "Flights" });
     this.staysNavigation = page.getByRole("menuitem", { name: "Stays" });
