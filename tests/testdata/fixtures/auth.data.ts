@@ -1,4 +1,4 @@
-import { AuthCredentials } from "../../api/types/auth.types";
+import { AuthCredentials } from "../../flight-booking/api/types/auth.types";
 import { userFixture } from "../../testdata/user-fixture";
 
 const username = userFixture.username;

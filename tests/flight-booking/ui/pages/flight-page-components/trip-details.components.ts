@@ -15,30 +15,51 @@ export class TripDetialsComponent {
   readonly childrenCount!: Locator;
   readonly infantsCount!: Locator;
 
+  readonly infantsOverAdults!: Locator;
 
   readonly cabinClass!: Locator;
+  readonly addAnotherFlight!: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.tripDetailsContainer = this.page.locator(`div[class="cvdH cvdH-mod-spacing-base"]`);
+    this.tripDetailsContainer = this.page.locator(
+      `div[class="cvdH cvdH-mod-spacing-base"]`,
+    );
   }
 
   async initializedTripDetails() {
     this.addAdult = this.page.getByRole("button", { name: "Increment" }).nth(0);
-    this.minusAdult = this.page.getByRole("button", { name: "Decrement" }).nth(0);
-    this.addChildren = this.page.getByRole("button", { name: "Increment" }).nth(1);
-    this.minusChildren = this.page.getByRole("button", { name: "Decrement" }).nth(1);
-    this.addInfants = this.page.getByRole("button", { name: "Increment" }).nth(2);
-    this.minusInfants = this.page.getByRole("button", { name: "Decrement" }).nth(2);
+    this.minusAdult = this.page
+      .getByRole("button", { name: "Decrement" })
+      .nth(0);
+    this.addChildren = this.page
+      .getByRole("button", { name: "Increment" })
+      .nth(1);
+    this.minusChildren = this.page
+      .getByRole("button", { name: "Decrement" })
+      .nth(1);
+    this.addInfants = this.page
+      .getByRole("button", { name: "Increment" })
+      .nth(2);
+    this.minusInfants = this.page
+      .getByRole("button", { name: "Decrement" })
+      .nth(2);
 
     this.adultsCount = this.page.locator('input[aria-label="Adults"]');
     this.childrenCount = this.page.locator('input[aria-label="Children"]');
     this.infantsCount = this.page.locator('input[aria-label="Infants on lap"]');
+
+    this.infantsOverAdults = this.page.getByText(
+      "Searches cannot have more lap infants than adults",
+    );
+    this.addAnotherFlight = this.page.getByRole("button", { name: "Add another flight" });
   }
 
   async clickMultipleTimes(locator: Locator, count: number): Promise<void> {
     for (let i = 0; i < count; i++) {
-      await locator.click({ timeout: 5000 });
+      if (!(await locator.isDisabled())) {
+        await locator.click({ timeout: 5000 });
+      }
     }
   }
 
@@ -47,12 +68,15 @@ export class TripDetialsComponent {
 
     for (const [index, age] of ages.entries()) {
       const ageCombobox = childAgeContainers.nth(index).getByRole("combobox");
-      await ageCombobox.click({ timeout: 5000 });
-      await this.page
-        .getByRole("listbox")
-        .last()
-        .getByRole("option", { name: String(age), exact: true })
-        .click({ timeout: 5000 });
+
+      if (await ageCombobox.count()) {
+        await ageCombobox.click({ timeout: 5000 });
+        await this.page
+          .getByRole("listbox")
+          .last()
+          .getByRole("option", { name: String(age), exact: true })
+          .click({ timeout: 5000 });
+      }
     }
   }
 
@@ -60,5 +84,4 @@ export class TripDetialsComponent {
     this.cabinClass = this.page.getByRole("radio", { name: classType });
     await this.cabinClass.click({ timeout: 5000 });
   }
-
 }
